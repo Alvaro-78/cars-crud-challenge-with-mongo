@@ -3,10 +3,14 @@ const mongoose = require('mongoose');
 
 const userSchema = {
   name    : String,
-  email   : String,
+  email   : {
+    type: String,
+    required: true,
+    index: unique
+  },
   password: Number
 }
 
-const Car = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
