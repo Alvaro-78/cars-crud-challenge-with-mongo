@@ -11,8 +11,12 @@ class UserController {
   }
 
   async store(user) {
+
+    user.password = await bcrypt.hash( user.password, 6 );;
+
     return User.create(user);
-  }
+    
+  };
 
   async update(id, user) {    
     return User.findByIdAndUpdate(id,user);
