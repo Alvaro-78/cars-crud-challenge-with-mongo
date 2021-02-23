@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const usersController = require('../controllers/user');
+const userController = require('../controllers/user');
 
 router.get('/',async (req, res) => {   
   try{
-      res.json(await usersController.indexAll())
+      res.json(await userController.indexAll())
   } catch (error) {
       return res.sendStatus(500).json({
           message: 'Server Error'
@@ -13,7 +13,7 @@ router.get('/',async (req, res) => {
 
 router.post('/',async (req, res) => {
   try{
-    const id = await usersController.store(req.body);
+    const id = await userController.store(req.body);
     const status = 'success';
     res.json({status,id});
 } catch( error ){
@@ -26,7 +26,7 @@ router.post('/',async (req, res) => {
 router.put('/:id',async (req,res) => {
   try{
     const id = req.params.id;
-    res.json(await usersController.update(id,req.body));
+    res.json(await userController.update(id,req.body));
   } catch( error ){
     return res.sendStatus(500).json({
       message: 'Server Error'
